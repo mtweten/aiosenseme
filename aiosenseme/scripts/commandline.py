@@ -49,7 +49,15 @@ ARGS.add_argument(
     action="store",
     dest="name",
     default=None,
-    help="fan name, room name or IP address",
+    help="fan name",
+)
+ARGS.add_argument(
+    "-i",
+    "--ip",
+    action="store",
+    dest="ip",
+    default=None,
+    help="fan ip address",
 )
 ARGS.add_argument(
     "-p",
@@ -187,7 +195,12 @@ async def process_args():
         if args.name is None:
             print("You must specify a fan name using -n or --name")
             return
-        fan = await aiosenseme.discover(args.name, 2)
+        if args.ip is None:
+            print("You must specify a fan ip address using -i or --ip")
+            return
+        fan = SensemeFan(args.name, "01:23:45:67:89:AB", args.ip, "FAN,HAIKU,SENSEME")
+        fan.start()
+        await asyncio.sleep(1.0)
         if fan is None:
             print(f"Fan/Room/IP address '{args.name}' not found")
             return

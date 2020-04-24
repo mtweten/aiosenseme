@@ -1,5 +1,9 @@
 # Changelog for aiosenseme library
 
+## v0.3.4-i6 - Test i6 fans only
+
+* Please do not use this for normal SenseME fans.
+
 ## v0.3.3
 
 * Ignore Wireless Wall Controllers. It appears this library will connect to them and cause lockups requiring a reset.
