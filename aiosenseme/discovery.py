@@ -84,6 +84,7 @@ class SensemeDiscoveryEndpoint:
                 return None
             msg = rsp[0]
             addr = rsp[1]
+            _LOGGER.debug("Received '%s' from %s on %s", msg, addr, self.ip)
             if len(msg) > 200 or len(msg) < 31:
                 continue
             if msg[0] != "(" or msg[-1] != ")":
@@ -93,9 +94,8 @@ class SensemeDiscoveryEndpoint:
             if len(msg_data) != 5:
                 continue
             if msg_data[4] == "SWITCH,SENSEME":
-                _LOGGER.debug("Ignored Wall Switch '%s' on %s", msg, self.ip)
+                _LOGGER.debug("Ignored Wall Switch", msg[0], addr)
                 continue
-            _LOGGER.debug("Received '%s' from %s on %s", msg, addr, self.ip)
             device = SensemeFan(msg_data[0], msg_data[3], addr, msg_data[4])
             return device
 
