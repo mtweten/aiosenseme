@@ -5,7 +5,6 @@ import asyncio
 import logging
 from typing import List
 
-import aiosenseme
 from aiosenseme import SensemeDiscovery, SensemeFan
 from aiosenseme import __version__
 
@@ -44,20 +43,10 @@ ARGS.add_argument(
     help="list known fan models",
 )
 ARGS.add_argument(
-    "-n",
-    "--name",
-    action="store",
-    dest="name",
-    default=None,
-    help="fan name",
+    "-n", "--name", action="store", dest="name", default=None, help="fan name",
 )
 ARGS.add_argument(
-    "-i",
-    "--ip",
-    action="store",
-    dest="ip",
-    default=None,
-    help="fan ip address",
+    "-i", "--ip", action="store", dest="ip", default=None, help="fan ip address",
 )
 ARGS.add_argument(
     "-p",

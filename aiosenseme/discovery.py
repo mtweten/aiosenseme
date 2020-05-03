@@ -94,7 +94,7 @@ class SensemeDiscoveryEndpoint:
             if len(msg_data) != 5:
                 continue
             if msg_data[4] == "SWITCH,SENSEME":
-                _LOGGER.debug("Ignored Wall Switch", msg[0], addr)
+                _LOGGER.debug("Ignored Wall Switch")
                 continue
             device = SensemeFan(msg_data[0], msg_data[3], addr, msg_data[4])
             return device
