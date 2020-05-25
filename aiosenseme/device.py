@@ -997,6 +997,18 @@ class SensemeFan(SensemeDevice):
         state = "ON" if state else "OFF"
         self._send_command(f";LIGHT;AUTO;{state}")
 
+    @property
+    def smartsleep_mode(self) -> bool:
+        state = self._data.get(";SLEEP;STATE", None)
+        if state:
+            return state == "ON"
+        return None
+
+    @smartsleep_mode.setter
+    def smartsleep_mode(self, state: bool):
+        state = "ON" if state else "OFF"
+        self._send_command(f";SLEEP;STATE;{state}")
+
 
 class SensemeLight(SensemeDevice):
     """SensemeLight Class."""
